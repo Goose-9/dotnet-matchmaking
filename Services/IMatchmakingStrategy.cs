@@ -16,7 +16,6 @@ public interface IMatchmakingStrategy
     /// </summary>
     IEnumerable<Match> TryMakeMatches(CancellationToken ct);
 
-
     /// <summary>Clean-up API (kicks, cancels, expiry).</summary>
     void RemoveTicket(string playerId);
 }
