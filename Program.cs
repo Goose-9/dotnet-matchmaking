@@ -6,6 +6,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddHealthChecks();
+
 // Strategy + engine
 builder.Services.AddSingleton<IMatchmakingStrategy, FifoQueueStrategy>();
 builder.Services.AddSingleton<MatchmakingEngine>();
@@ -20,6 +22,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapControllers(); 
+app.MapControllers();
+
+app.MapHealthChecks("/health/live");
+app.MapHealthChecks("/health/ready");
 
 app.Run();
